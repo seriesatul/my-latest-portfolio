@@ -5,11 +5,16 @@
     src: url("./pricedown.otf");
 }
 
+@font-face {
+    font-family: "Grotesk";
+    src: url("./GeneSizeGroteskDemo.otf");
+}
+
 html,body{
     height: 100%;
     width: 100%;
     font-family:"pricedown";
-    cursor: none;
+    /* cursor: none; */
 }
 
 
@@ -19,4 +24,14 @@ html,body{
 
 .hero-text {
   transform-origin: center top;
+}
+
+p{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.text-segment{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 400;
+  letter-spacing: -1px;
 }

@@ -153,18 +153,23 @@ useGSAP(() => {
         </svg>
       </div>
       {
-        showContent && <div className='main overflow-hidden bg-black w-full'>
-          <div className='landing overflow-hidden relative w-full h-screen bg-black'>
-            <div className='navbar absolute top-0 left-0 w-full py-10 px-10 z-[10]'>
+        showContent && <div>
+
+            <div className='navbar flex justify-between m-2 items-center  fixed top-0 left-0 w-full py-10 px-10 z-[10]'>
               <div className='logo flex gap-4'>
                 <div className='text-white gap-1 flex flex-col lines'>
-                  <div className='line bg-zinc-50 h-1 w-5'></div>
-                  <div className='line bg-zinc-50 h-1 w-8'></div>
-                  <div className='line bg-zinc-50 h-1 w-5'></div>
+                  <div className='line bg-zinc-50 h-2 w-8'></div>
+                  <div className='line bg-zinc-50 h-2 w-8'></div>
+                  
                 </div>
                 <h3 className=' text-3xl -mt-2 text-white'>Portfolio</h3>
               </div>
             </div>
+          
+          
+           <div className='main overflow-hidden bg-black w-full'>
+          <div className='landing overflow-hidden relative w-full h-screen bg-black'>
+          
            
             <div className='imagesdiv relative overflow-hidden w-full h-screen'>
               <img  className='w-full scale-[1.1] sky absolute h-full object-cover' src="./sky.png" alt="" />
@@ -185,6 +190,9 @@ useGSAP(() => {
           
 
         </div>
+        </div> 
+        
+       
       }
    </>
     </div>

@@ -6,9 +6,10 @@ import 'remixicon/fonts/remixicon.css'
 
 const Showcase = () => {
 
-    let [showContent,setShowContent] = useState(false);
+let [showContent,setShowContent] = useState(false);
+let [showMask, setShowMask] = useState(true);
 
-useGSAP ( () =>{
+useGSAP(() => {
   const tl = gsap.timeline();
 
   tl.to('.vi-mask-group', {
@@ -23,8 +24,9 @@ useGSAP ( () =>{
     transformOrigin: '50% 50%',
     opacity: 0,
     onUpdate: function () {
+      console.log('Animation progress:', this.progress());
       if (this.progress() >= 0.9) {
-        document.querySelector('.svg').remove();
+        setShowMask(false);
         setShowContent(true);
         this.kill();
       }
@@ -153,18 +155,22 @@ useGSAP(() => {
         </svg>
       </div>
       {
-        showContent && <div className='main overflow-hidden bg-black w-full'>
-          <div className='landing overflow-hidden relative w-full h-screen bg-black'>
-            <div className='navbar absolute top-0 left-0 w-full py-10 px-10 z-[10]'>
+        showContent && <div>
+
+            <div className='navbar fixed flex justify-between items-center top-0 left-0 w-full py-10 px-10 z-[10]'>
+               <h3 className=' text-3xl -mt-2 text-white'>Portfolio</h3>
               <div className='logo flex gap-4'>
                 <div className='text-white gap-1 flex flex-col lines'>
-                  <div className='line bg-zinc-50 h-1 w-5'></div>
-                  <div className='line bg-zinc-50 h-1 w-8'></div>
-                  <div className='line bg-zinc-50 h-1 w-5'></div>
+                  <div className='line bg-zinc-50 h-2 w-8'></div>  
+                  <div className='line bg-zinc-50 h-2 w-8'></div>
                 </div>
-                <h3 className=' text-3xl -mt-2 text-white'>Portfolio</h3>
+               
               </div>
             </div>
+
+          <div className='main overflow-hidden bg-black w-full'>
+          <div className='landing overflow-hidden relative w-full h-screen bg-black'>
+          
            
             <div className='imagesdiv relative overflow-hidden w-full h-screen'>
               <img  className='w-full scale-[1.1] sky absolute h-full object-cover' src="./sky.png" alt="" />
@@ -185,6 +191,9 @@ useGSAP(() => {
           
 
         </div>
+        </div>
+        
+        
       }
    </>
     </div>
