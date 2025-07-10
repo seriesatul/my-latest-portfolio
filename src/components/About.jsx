@@ -181,6 +181,7 @@ const About = () => {
 
     }, { scope: main });
 
+
   return (
     <div ref={main}>
         {/* Dummy content to allow scrolling INTO the About component */}
@@ -191,7 +192,7 @@ const About = () => {
             <section ref={heroSectionRef} className='hero overflow-hidden flex-col relative w-full h-screen flex justify-center items-center bg-[#141414] text-white'>
             
                 <div ref={heroHeaderRef} className='hero-header absolute top-[55%] z-20 left-[50%] -translate-x-1/2 -translate-y-1/2 gap-2 md:gap-4 w-full flex flex-col items-center will-change-transform'>
-                    <h1 className='text-6xl md:text-7xl font-bold w-full text-center'>About Me</h1>
+                    <h1 className='text-6xl overflow-hidden md:text-7xl font-bold w-full text-center'>About Me</h1>
                     <p className='font-sans w-full text-lg md:text-xl text-center py-2 text-gray-300'>A "Pull Stack" Developer, who pulls code from Github.</p>
                 </div>
                 
