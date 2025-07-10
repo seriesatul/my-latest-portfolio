@@ -109,12 +109,11 @@ const Landing = () => {
     const mainElement = mainRef.current;
     const handleMouseMove = (e) => {
       const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
-      const yMove = (e.clientY / window.innerHeight - 0.5) * 20;
 
-      gsap.to('.text', { x: xMove * 1.5, y: yMove * 0.5, ease: 'power1.out' });
-      gsap.to(".sky", { x: xMove * 0.5, y: yMove * 0.2, ease: 'power1.out' });
-      gsap.to(".bg", { x: xMove, y: yMove * 0.3, ease: 'power1.out' });
-      gsap.to(".character", { x: `-50% + ${xMove * 2}px`, y: yMove, ease: 'power1.out' });
+      gsap.to('.text', { x: xMove * 1.5, ease: 'power1.out' });
+      gsap.to(".sky", { x: xMove * 0.5, ease: 'power1.out' });
+      gsap.to(".bg", { x: xMove, ease: 'power1.out' });
+      gsap.to(".character", { x: `-50% + ${xMove * 2}px`, ease: 'power1.out' });
     };
     mainElement.addEventListener('mousemove', handleMouseMove);
 
@@ -175,7 +174,7 @@ const Landing = () => {
                   <h1 className='text-8xl ml-10'>Singh</h1>
                   <h1 className='text-8xl -ml-40'>Chauhan</h1>
                 </div>
-                <img className='left-1/2 character absolute scale-[1] -bottom-[10%] w-[30%] -translate-x-1/2 z-30 rounded-lg' src="./20250609_1756_Stylized Selfie Character_remix_01jxaacr6be7xvddsc4v7yy3d5 (1).png" alt="" />
+                <img className='left-1/2 top-[30%] -translate-y-1/2 character absolute scale-[1] -bottom-[80%] w-[30%] -translate-x-1/2 z-30 rounded-lg' src="./20250609_1756_Stylized Selfie Character_remix_01jxaacr6be7xvddsc4v7yy3d5 (1).png" alt="" />
                 <div className='text-white bottombar flex gap-4 absolute w-full h-20 items-center bottom-0 bg-gradient-to-t from-black to-transparent z-40'>
                   <i className="ml-4 p-2 border-white font-light text-4xl rounded-full ri-arrow-down-circle-line"></i>
                   <h3 className='text-2xl font-sans'>Scroll Down</h3>

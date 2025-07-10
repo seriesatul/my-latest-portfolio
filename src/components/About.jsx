@@ -198,22 +198,22 @@ const About = () => {
                 <div ref={animatedIconsRef} className='animated-icons fixed bottom-10 z-20 flex items-center will-change-transform gap-4 w-11/12 max-w-md'>
                     {[1, 2, 3, 4, 5].map(i => (
                         <div key={i} className={`animated-icon icon-${i} flex-1 aspect-square will-change-transform`}>
-                            <img className='w-full h-full object-cover rounded-lg' src={`https://picsum.photos/seed/${i + 50}/200/200`} alt={`Animated icon ${i}`} />
+                            <img className='w-full h-full object-cover object-center scale-[1.1] rounded-lg' src={`./about/Image ${i}.avif`} alt={`Animated icon ${i}`} />
                         </div>
                     ))}
                 </div>
 
                 <h1 className='animated-text px-10 text-black text-3xl md:text-5xl relative z-10 text-center leading-snug md:leading-relaxed font-semibold'>
-                    <div className='placeholder-icon w-14 h-14 md:w-16 md:h-16 inline-block align-middle invisible'></div>
+                    <div className='placeholder-icon w-20 h-20 md:w-16 md:h-16 inline-block align-middle invisible'></div>
                     <span className='text-segment opacity-0'> I'm Atul, a Computer Science Student driven by a passion for AI and full-stack development. </span>
                     <br/>
-                    <div className='placeholder-icon w-14 h-14 md:w-16 md:h-16 inline-block align-middle invisible'></div>
+                    <div className='placeholder-icon w-20 h-20 md:w-16 md:h-16 inline-block align-middle invisible'></div>
                     <span className='text-segment opacity-0'> I build intelligent, user-focused solutions—from websites to </span>
-                    <div className='placeholder-icon w-14 h-14 md:w-16 md:h-16 inline-block align-middle invisible'></div>
+                    <div className='placeholder-icon w-20 h-20 md:w-16 md:h-16 inline-block align-middle invisible'></div>
                     <span className='text-segment opacity-0'> creative AI tools—with a focus </span>
-                    <div className='placeholder-icon w-14 h-14 md:w-16 md:h-16 inline-block align-middle invisible'></div>
+                    <div className='placeholder-icon w-20 h-20 md:w-16 md:h-16 inline-block align-middle invisible'></div>
                     <span className='text-segment opacity-0'> on real-world impact.</span>
-                    <div className='placeholder-icon w-14 h-14 md:w-16 md:h-16 inline-block align-middle invisible'></div>
+                    <div className='placeholder-icon w-20 h-20 md:w-16 md:h-16 inline-block align-middle invisible'></div>
                 </h1>
             </section>
         </div>
