@@ -1,24 +1,63 @@
-# Logs
-logs
-*.log
+# =========================================================================
+# Next.js & Node.js
+# =========================================================================
+
+# Dependencies & Build artifacts
+/node_modules
+/.next/
+/out/
+/build
+
+# Local development files
+.DS_Store
+*.local
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# =========================================================================
+# Environment Variables
+# =========================================================================
 
-# Editor directories and files
+# Never commit environment variables.
+# These files often contain sensitive API keys, database credentials, etc.
+# Instead, create a .env.example file with placeholder values.
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# =========================================================================
+# Editor & IDE specific files
+# =========================================================================
+
+# VSCode
 .vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
 !.vscode/extensions.json
+*.code-workspace
+
+# JetBrains IDEs (WebStorm, etc.)
 .idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
+# =========================================================================
+# Test & Coverage Reports
+# =========================================================================
+/coverage
+.nyc_output
+
+# =========================================================================
+# Other
+# =========================================================================
+
+# Optional: If you use TypeScript and want to ignore generated JS files
+# *.js
+# *.js.map
+
+# Optional: TurboRepo cache
+.turbo

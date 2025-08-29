@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=DM+Serif+Display&display=swap');
+/* globals.css */
+:root {
+  --bg: #fff;
+  --fg: #000;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  color: var(--fg);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+img { width: 100%; height:100%; object-fit:cover; }
+h1 { font-size:2.25rem; font-weight: 600; letter-spacing: -0.1rem; line-height: 1; }
+h2 { font-size:2rem; font-weight: 700; letter-spacing: -0.04rem; line-height: 1.125; -webkit-font-smoothing: antialiased; }
+a,p { display:block; text-decoration:none; color:var(--fg); font-size: 0.85rem; font-weight: 600; }
+
+/* --- THIS IS THE KEY --- */
+/* Set ONLY opacity: 0. GSAP will handle the rest. */
+.home .header h1,
+.home .hero-img,
+.work h1, .work .projects img,
+.studio .col:nth-child(1) h2,
+.studio .col:nth-child(2) > h2, /* More specific selector for the story text */
+.studio .about-img,
+.contact .col:nth-child(1) h2,
+.contact .contact-copy,
+.contact .socials p {
+  opacity: 0;
+}
+/* --- END OF KEY SECTION --- */
+
+.nav{ position: fixed; top:0; left:0; width:100vw; padding: 1em 2em; display:flex; align-items: center; gap:1em; z-index: 2; }
+.nav .col:nth-child(1){ flex:1; }
+.nav .col:nth-child(2){ flex:1; display: flex; justify-content: space-between; }
+.home { width:100%; min-height: 100vh; overflow: hidden; background-color: var(--bg); position: relative; }
+.home .header { position:absolute; top:35%; left:50%; transform: translate(-50%, -50%); width: 100%; z-index: 1; }
+.home .header h1{ font-size: 30.5vw; font-weight: 700; z-index: 90; text-align: center; color: #000; }
+.home .hero-img { position: absolute; left:50%; top: 10%; transform: translateX(-50%); width: 35%;z-index: 1000; height: 120vh; overflow: hidden; } /* Layout transform is preserved */
+.revealer { position:fixed; top: 0; left: 0; width: 100vw; height: 100svh; background-color: #000; z-index: 999; pointer-events: none; }
+.work { text-align: center; padding: 15em 1em; display:flex; flex-direction:column; gap:2em; background-color: var(--bg); }
+.work .projects { width:32%; margin: 0 auto; display:flex; flex-direction: column; gap: 4em; }
+.work .projects img{ aspect-ratio: 4/5; }
+.contact { padding: 15em 1em; display:flex; gap: 1em; background-color: var(--bg); min-height: 100svh; position: relative; }
+.studio { padding: 10em 8em; display: flex; gap: 4em; justify-content: space-around; align-items: flex-start; }
+.studio .col:nth-child(1) { flex: 1; }
+.studio .col:nth-child(2) { flex: 2; display: flex; flex-direction: column; justify-content: space-between; gap: 2.5em; line-height: 1.6; }
+.contact .col:nth-child(2){ flex:2; display:flex; flex-direction: column; gap:2em; }
+.studio .about-img { aspect-ratio: 5/7; height: 100vh;width: 40vw; overflow: hidden; border-radius: 12px; }
+.studio .about-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; filter: grayscale(100%); }
+.studio .about-img:hover img { transform: scale(1.05); }
+.contact .socials { position: absolute; bottom:1.5em; left: calc(1em + 2em + 1em); display:flex; gap:1em; width: fit-content; }
+.char { 
+  display: inline-block; 
+}
+
+/* --- ADD THIS NEW STYLE FOR THE LINE ANIMATION --- */
+.line {
+  overflow: hidden; /* This is the key to the "clip" effect */
+  padding-bottom: 0.1em; /* Optional: adds a little space for letters like 'g' or 'y' */
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
