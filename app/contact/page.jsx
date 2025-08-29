@@ -2,54 +2,52 @@
 import { useRevealer } from "../hooks/useRevealer";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import SplitType from 'split-type';
 
 const Contact = () => {
     useRevealer();
     const container = useRef();
+    const [isSplit, setIsSplit] = useState(false);
+
+    useEffect(() => {
+        const title = container.current.querySelector(".col:nth-child(1) h2");
+        if (title) {
+            new SplitType(title, { types: 'lines' });
+            setIsSplit(true);
+        }
+    }, []);
 
     useGSAP(() => {
-        const title = container.current.querySelector(".col:nth-child(1) h2");
-        const contactCopies = container.current.querySelectorAll(".contact-copy");
-        const contactLines = container.current.querySelectorAll(".contact-copy h2");
-        const socialLinks = container.current.querySelectorAll(".socials p");
+        if (isSplit) {
+            const title = container.current.querySelector(".col:nth-child(1) h2");
+            const contactCopies = container.current.querySelectorAll(".contact-copy");
+            const contactLines = container.current.querySelectorAll(".contact-copy h2");
+            const socialLinks = container.current.querySelectorAll(".socials p");
 
-        // Safety check
-        if (!title || contactLines.length === 0) return;
+            const titleLines = title.querySelectorAll('.line');
 
-        const titleLines = new SplitType(title, { types: 'lines' }).lines;
+            const tl = gsap.timeline({ delay: 1.6 });
 
-        const tl = gsap.timeline({
-            delay: 1.6
-        });
+            tl.set([title, ...contactCopies], { opacity: 1 });
 
-        // --- THIS IS THE FIX ---
-        // Instantly set the parent containers' opacity to 1.
-        tl.set([title, ...contactCopies], { opacity: 1 });
-
-        // Animate the "Contact Us" title
-        tl.fromTo(titleLines,
-            { y: '100%', opacity: 0 },
-            { y: '0%', opacity: 1, duration: 1, ease: 'power3.out' },
-            "<" // Start at the same time
-        );
-
-        // Animate the contact details
-        tl.fromTo(contactLines,
-            { y: '100%', opacity: 0 },
-            { y: '0%', opacity: 1, stagger: 0.15, duration: 1, ease: 'power3.out' },
-            "-=0.8"
-        );
-
-        // Animate social links
-        tl.fromTo(socialLinks,
-            { y: 20, opacity: 0 },
-            { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power2.out' },
-            "-=0.5"
-        );
-
-    }, { scope: container });
+            tl.fromTo(titleLines,
+                { y: '100%', opacity: 0 },
+                { y: '0%', opacity: 1, duration: 1, ease: 'power3.out' },
+                "<"
+            );
+            tl.fromTo(contactLines,
+                { y: '100%', opacity: 0 },
+                { y: '0%', opacity: 1, stagger: 0.15, duration: 1, ease: 'power3.out' },
+                "-=0.8"
+            );
+            tl.fromTo(socialLinks,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power2.out' },
+                "-=0.5"
+            );
+        }
+    }, [isSplit]);
 
     return (
         <>
