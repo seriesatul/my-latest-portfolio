@@ -1,42 +1,176 @@
+@import "tailwindcss";
+
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bungee+Tint&family=Oswald:wght@200..700&family=Playwrite+HU&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Romanesco&display=swap');
+/* globals.css */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #fff;
+  --fg: #000;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
+* { margin:0; padding:0; box-sizing:border-box; }
 body {
-  max-width: 100vw;
+  color: var(--fg);
+  font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
 }
+img { width: 100%; height:100%; object-fit:cover; }
+h1 { font-size:2.25rem; font-weight: 600; letter-spacing: -0.1rem; line-height: 1; }
+h2 { font-size:2rem; font-weight: 700; letter-spacing: -0.04rem; line-height: 1.125; -webkit-font-smoothing: antialiased; }
+a,p { display:block; text-decoration:none; color:var(--fg); font-size: 0.85rem; font-weight: 600; }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* --- THIS IS THE KEY --- */
+/* Set ONLY opacity: 0. GSAP will handle the rest. */
+.home .header h1,
+.home .hero-img,
+.work h1, .work .projects img,
+.studio .col:nth-child(1) h2,
+.studio .col:nth-child(2) > h2, /* More specific selector for the story text */
+.studio .about-img,
+.contact .col:nth-child(1) h2,
+.contact .contact-copy,
+.contact .socials p {
+  opacity: 0;
+}
+/* --- END OF KEY SECTION --- */
+
+.nav{ position: fixed; top:0; left:0; width:100vw; padding: 1em 2em; display:flex; align-items: center; gap:1em; z-index: 2; }
+.nav .col:nth-child(1){ flex:1; }
+.nav .col:nth-child(2){ flex:1; display: flex; justify-content: space-between; }
+.home { width:100%; min-height: 100vh; overflow: hidden; background-color: var(--bg); position: relative; }
+.home .header { position:absolute; top:35%; left:50%; transform: translate(-50%, -50%); width: 100%; z-index: 1; }
+.home .header h1{font-family: "Bebas Neue", sans-serif; font-size: 30.5vw; margin-top: 30vh; text-shadow: 
+    0 0 10px orangered; font-weight: 700; z-index: 90; text-align: center; color: orangered; }
+.home .header h5 { position: absolute; left: 50%; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.2rem; letter-spacing: 0.15rem; color: #000; z-index: 999; }    
+.home .hero-img { position: fixed; left:50%; top: 10%; transform: translateX(-50%); width: 35%;z-index: 1000; height: 120vh; overflow: hidden; } /* Layout transform is preserved */
+.revealer { position:fixed; top: 0; left: 0; width: 100vw; height: 100svh; background-color: #000; z-index: 999; pointer-events: none; }
+.work { text-align: center; padding: 15em 1em; display:flex; flex-direction:column; gap:2em; background-color: var(--bg); }
+.work .projects { width:32%; margin: 0 auto; display:flex; flex-direction: column; gap: 4em; }
+.work .projects img{ aspect-ratio: 4/5; }
+.contact { padding: 15em 1em; display:flex; gap: 1em; background-color: var(--bg); min-height: 100svh; position: relative; }
+.studio { padding: 10em 8em; display: flex; gap: 4em; justify-content: space-around; align-items: flex-start; }
+.studio .col:nth-child(1) { flex: 1; }
+.studio .col:nth-child(2) { flex: 2; display: flex; flex-direction: column; justify-content: space-between; gap: 2.5em; line-height: 1.6; }
+.contact .col:nth-child(2){ flex:2; display:flex; flex-direction: column; gap:2em; }
+.studio .about-img { aspect-ratio: 5/7; height: 100vh;width: 40vw; overflow: hidden; border-radius: 12px; }
+.studio .about-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; filter: grayscale(100%); }
+.studio .about-img:hover img { transform: scale(1.05); }
+.contact .socials { position: absolute; bottom:1.5em; left: calc(1em + 2em + 1em); display:flex; gap:1em; width: fit-content; }
+.char { 
+  display: inline-block; 
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* --- ADD THIS NEW STYLE FOR THE LINE ANIMATION --- */
+.line {
+  overflow: hidden; /* This is the key to the "clip" effect */
+  padding-bottom: 0.1em; /* Optional: adds a little space for letters like 'g' or 'y' */
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+html.lenis {
+  height: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.portfolio {
+  width: 100%;
+  min-height: 100vh;
+  padding: 1em 2em;
+  background-color: var(--bg);
+  font-size: 3rem;
+  font-weight: 400;
+}
+.portfolio h1 {
+ font-size: 10vw;
+ font-weight: 900;
+ line-height: 1.2;
+ letter-spacing: -0.4rem;
+}
+.card-content{
+  width: 50%;
+}
+.card-img{
+  width: 40%;
+  height: 60vh;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.card-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-inner{
+  margin: 10px;
+  border-radius: 12px;
+  position: relative;
+  will-change: transform;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 4em;
+}
+.card-content{
+  width: 50%;
+}
+
+.card-image{
+  width: 50%;
+  overflow: hidden;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.card-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-inner h1{
+  color:white;
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: 1-0.2rem;
+  line-height:1;
+  margin-bottom: 2.5rem;
+}
+.card-inner p{
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.card {
+  position: absolute;
+  top: 10vh; 
+  height: 80vh; 
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box; /* Important for consistent sizing */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- THE CONTAINER THAT GETS PINNED --- */
+.about {
+    position: relative;
+    height: 100vh; /* It must have a defined height for the children to be positioned within */
+    overflow: hidden; /* Prevents any accidental overflow before pinning */
+}
+
+/* --- CRITICAL CARD STYLING --- */
+/* This positions all cards directly on top of each other at the start */

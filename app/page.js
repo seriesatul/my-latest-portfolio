@@ -1,95 +1,86 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import About from "@/components/About";
+import { useRevealer } from "./hooks/useRevealer";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
+import SplitType from 'split-type'; // Remember: run npm install split-type if you haven't
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  useRevealer();
+  const container = useRef();
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  useGSAP(() => {
+    const h1 = container.current.querySelector(".header h1");
+    if (!h1) return; // Safety check
+
+    const chars = new SplitType(h1, { types: 'chars' }).chars;
+
+    // A GSAP Timeline gives us precise control over the animation sequence
+    const tl = gsap.timeline({
+      delay: 1.6 // This single delay waits for the revealer to finish
+    });
+
+    // 1. FIRST, make the parent <h1> visible so its children can appear.
+    // We use .set() to do this instantly at the start of the timeline.
+    tl.set(h1, { opacity: 1 });
+
+    // 2. THEN, animate the characters and the image.
+    // The "<" at the end tells GSAP to start these animations at the same time
+    // as the previous step (the very beginning of the timeline).
+
+    tl.fromTo(chars,
+      { // FROM state
+        yPercent: 100,
+        opacity: 0
+      },
+      { // TO state
+        yPercent: 0,
+        opacity: 1,
+        stagger: 0.2,
+        duration: 1.5,
+        ease: "power4.out",
+      },
+      "<" // Start at the same time as the .set()
+    );
+
+    tl.fromTo(".hero-img",
+      { // FROM state
+        yPercent: 40,
+        delay:2,
+        scale: 1.,
+        opacity: 0
+      },
+      { // TO state
+        yPercent: 0,
+        scale: 1,
+        opacity: 1,
+        duration: 2,
+        ease: "power4.out",
+      },
+      "<" // Also start at the same time
+    );
+
+  }, { scope: container });
+
+  return (
+    <>
+      <div className="revealer"></div>
+      <div className="home" ref={container}>
+        <div className="header">
+          <h1>CHAUHAN</h1>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className="hero-img">
+          <img src="/hero-img.png" alt="Hero Image" />
+        </div>
+      </div>
+
+      <div className="portfolio">
+        <h1>Welcome to my Portfolio</h1>
+        <About/>
+      </div>
+
+
+    </>
   );
 }
